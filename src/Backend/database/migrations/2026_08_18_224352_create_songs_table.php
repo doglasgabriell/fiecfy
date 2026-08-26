@@ -19,6 +19,8 @@ return new class extends Migration
 
             // Chave estrangeira referente ao album
             $table->foreignId('album_id')->constrained()->cascadeOnDelete();
+
+            $table->integer('track_number')->default(1); // faixa 1, 2, 3
             
             $table->timestamps();
         });
