@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlbumController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,5 +17,12 @@ Route::prefix('playlists')->group(function() {
     Route::delete('/{id}', [PlaylistController::class, 'destroy']);
 });
 
+Route::prefix('albuns')->group(function() {
+    Route::post('/', [AlbumController::class, 'store']);
+    Route::get('/{id}', [AlbumController::class, 'show']);
+    Route::get('/', [AlbumController::class, 'index']);
+    Route::put('/{id}', [AlbumController::class, 'update']);
+    Route::delete('/{id}', [AlbumController::class, 'destroy']);
+});
 
 
