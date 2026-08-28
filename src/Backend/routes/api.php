@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\ArtistaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +26,7 @@ Route::prefix('albuns')->group(function() {
     Route::delete('/{id}', [AlbumController::class, 'destroy']);
 });
 
+Route::prefix('artista')->group(function() {
+    Route::post('/', [ArtistaController::class, 'store']);
+});
 
