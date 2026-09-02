@@ -46,19 +46,19 @@ class ArtistaController extends Controller
 
 
 // ==============================================================================
-// ! CREATE -> CRIAR
+// CREATE -> CRIAR
 // ==============================================================================
+
     public function store(Request $request) {
         // Criando uma variável, que armazena a requisição (os dados) que foram inseridos nas colunas que foram liberadas no model 'Artist' e salvando(create) no banco sozinho
         $novoArtista = Artist::create($request->all());
 
 
         // Retorna os dados (A requisição) que foram atribuídas na váriavel $novoArtista
-        return response()->json($novoArtista, 201);
+        return response()->json($novoArtista, 200);
     }
 
 
-    // ! BUSCAR/MOSTRAR TODOS OS ARTISTAS
     // Buscando todos os artistas
     public function index() {
         // Select * from artists
@@ -67,9 +67,7 @@ class ArtistaController extends Controller
         return response()->json($todosArtistas, 200);
     }
 
-
-
-    //! MOSTRAR APENAS UM ARTISTA ESPECIFICO
+    // buscando apenas uma linha
     public function show($id) {
         // select * from artista where id = ??? 
         $artista = Artist::findOrFail($id);
@@ -77,8 +75,6 @@ class ArtistaController extends Controller
         return response()->json($artista, 200);
     }
 
-
-    
     public function update(Request $request, $id) {
         $artista = Artist::findOrFail($id);
 

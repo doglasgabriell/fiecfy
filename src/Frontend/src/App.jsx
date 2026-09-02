@@ -3,6 +3,8 @@ import Player from './components/Player';
 import Header from './components/Header';
 import PlaylistCard from './components/PlaylistCard';
 
+import PlaylistaData from './data/mockData';
+
 function App() {
   return (
     <>
@@ -18,7 +20,7 @@ function App() {
               <div className="h-800px">
                 <p className='text-zinc-400'>Seus álbuns serão exibidos aqui!</p>
 
-                <div className='flex'>
+                <div className='flex  flex-wrap gap-6'>
                   <PlaylistCard
                     titulo={"Obsessed With You"}
                     descricao={"Central Cee, Capa da mixtage"}
@@ -34,6 +36,15 @@ function App() {
                     descricao={"Central Cee - Single by simodmart"}
                     imagem={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqzBKTjNBnGKjaodWZtUgnKPVcb0rouaAI4ZsVsqB81Pyg0-O_os_fqjeK&s=10"}
                   />
+
+              { PlaylistaData.map( playlist => (
+                <PlaylistCard 
+                  key={playlist.id}
+                  titulo={playlist.titulo}
+                  descricao={playlist.descricao}
+                  imagem={playlist.imagem}
+                />
+              ) )}
                 </div>
               </div>
             </main>
