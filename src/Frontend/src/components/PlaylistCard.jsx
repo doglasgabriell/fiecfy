@@ -1,4 +1,4 @@
-const PlaylistCard = ({titulo, descricao, imagem}) => {
+const PlaylistCard = ({titulo, descricao, imagem, genero}) => {
   return (
     <div className="bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800 transition-colors cursor-pointer group w-48">
         <div className="relative mb-4">
@@ -14,6 +14,7 @@ const PlaylistCard = ({titulo, descricao, imagem}) => {
         {/* Titulo */}
         <h3 className="font-bold text-white mb-1 truncade">{titulo}</h3>
         <p className="text-sm text-zinc-400 line-clamp-2">{descricao}</p>
+        <span className="text-sm text-white font-bold">{genero}</span>
     </div>
   )
 }
