@@ -37,7 +37,7 @@ class ArtistaController extends Controller
     // buscando apenas uma linha
     public function show($id) {
         // select * from artista where id = ??? 
-        $artista = Artist::findOrFail($id);
+        $artista = Artist::with('albums')->findOrFail($id);
 
         return response()->json($artista, 200);
     }
