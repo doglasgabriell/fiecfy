@@ -48,7 +48,6 @@ class ArtistaController extends Controller
 // ==============================================================================
 // CREATE -> CRIAR
 // ==============================================================================
-
     public function store(Request $request) {
         // Criando uma variável, que armazena a requisição (os dados) que foram inseridos nas colunas que foram liberadas no model 'Artist' e salvando(create) no banco sozinho
         $novoArtista = Artist::create($request->all());
@@ -58,6 +57,10 @@ class ArtistaController extends Controller
         return response()->json($novoArtista, 200);
     }
 
+
+// ==============================================================================
+// READ -> LER
+// ==============================================================================
 
     // Buscando todos os artistas
     public function index() {
@@ -75,6 +78,11 @@ class ArtistaController extends Controller
         return response()->json($artista, 200);
     }
 
+// ==============================================================================
+// UPDATE -> ATUALIZAR UM DADO
+// ==============================================================================
+    
+
     public function update(Request $request, $id) {
         $artista = Artist::findOrFail($id);
 
@@ -84,6 +92,11 @@ class ArtistaController extends Controller
         return response()->json($artista, 200);
     }
 
+
+
+// ==============================================================================
+// DELETE -> DELETAR UM DADO
+// ==============================================================================
 
     // Executa a funcao de deletar um id especifico
 
