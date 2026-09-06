@@ -35,7 +35,7 @@ class ArtistaController extends Controller
     }
 
     // buscando apenas uma linha
-    public function show($id) {
+    public function show(int $id) {
         // select * from artista where id = ??? 
         $artista = Artist::with('albums')->findOrFail($id);
 
@@ -47,7 +47,7 @@ class ArtistaController extends Controller
 // ==============================================================================
     
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, int $id) {
         $artista = Artist::findOrFail($id);
 
         // Aplica os dados novos por cima dos antigos e salva -> substitui
@@ -65,8 +65,8 @@ class ArtistaController extends Controller
     // Executa a funcao de deletar um id especifico
 
     // passamos o id no parametro
-    public function destroy($id) {
-        $artista = Artist::findOrFai($id);
+    public function destroy(int $id) {
+        $artista = Artist::findOrFail($id);
 
         $artista->delete();
 

@@ -2,40 +2,75 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Playlist;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class PlaylistController extends Controller
 {
-    public function index() {
-        $playlists = [
-            ['id' => 1, 'Nome' => 'Xtranho', 'Autor' => 'Matue'],
-            ['id' => 2, 'Nome' => 'Balunbalungalasca', 'Autor' => 'Ratao MC'],
-            ['id' => 3, 'Nome' => 'Madagascar', 'Autor' => 'Rei leão'],
-        ];
 
-        return response()->json([
-            'Status' => true,
-            'Mensagem' => 'Listagem completa',
-            'dados' => $playlists
-        ]);
-    }
-
+// ==============================================================================
+// INSERIR -> INSERIR UM DADO
+// ==============================================================================
     public function store(Request $request) {
-        $nome_playlist = $request->input('nome-playlist');
+        $insertPlaylist = Playlist::create($request->all());
 
-        return response()->json([
-            'Status' => true,
-            'Mensagem' => "O nome da playlist foi capturado de '${nome_playlist}'",
-            'Dados recebido' => $request->all()
-        ], 201);
+        return response()->json($insertPlaylist);
     }
 
 
-    public function destroy($id) {
+// ==============================================================================
+// MOSTRAR -> SELECT * FROM playlist && SELECT * FROM playlist where id = ...
+// ==============================================================================
+
+    public function index() {
+        $playlists = Playlist::all();
+
+        return response()->json($playlists);
+    }
+
+    public function show(int $id) {
+        $playlist = Playlist::findOrFail($id);
+
+        return response()->json($playlist);
+    }
+
+
+// ==============================================================================
+// UPDATE -> ATUALIZAR UM DADO
+// ==============================================================================
+
+    public function update(Request $request,int $id) {
+        $updatePlaylist = Playlist::findOrFail($id);
+
+        $updatePlaylist->update($request->all());
+
+        return response()->json($updatePlaylist);
+    }
+
+
+// ==============================================================================
+// DELETE -> DELETAR UM DADO
+// ==============================================================================
+    public function destroy(int $id) {
+
+        $playlist = Playlist::finOrFail($id);
+
+        $playlist->delete();
+
         return response()->json([
             'status' => true,
-            'mensagem' => 'Remoção concluída com sucesso do id {$id}'
+            'mensagem' => 'Remoção concluída com sucesso do id'
         ]);
+    }
+
+// ==============================================================================
+// ATTACH
+// ==============================================================================
+    // ! PRECISO ESTUDAR MAIS UM POUCO SOBRE E ENTENDER MELHOR SOBRE ATTACH
+    public function addSong(Request $request, $id) {
+        $playlist = Playlist::create($request->all());
+        
+        $playlist->songs()->attach($request->songs_id);
     }
 }

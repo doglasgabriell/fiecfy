@@ -21,7 +21,7 @@ class AlbumController extends Controller
 // ==============================================================================
 // READ -> LER
 // ==============================================================================
-    public function index(Request $request) {
+    public function index() {
         $allAlbuns = Album::all();
 
         return response()->json($allAlbuns);
@@ -29,10 +29,10 @@ class AlbumController extends Controller
 
 
     // Como irei buscar um album apenas na tabela, uso o parametro ID que sera passado
-    public function show($id) {
+    public function show(int $id) {
 
         // Passo o parametro $id tambem por será este parametro que o método findOrFail buscará
-        $album = Album::findOrFail($id);
+        $album = Album::with('songs')->findOrFail($id);
 
         return response()->json($album);
     }   
@@ -42,7 +42,7 @@ class AlbumController extends Controller
 // ==============================================================================
 // UPDATE -> ATUALIZAR UM DADO
 // ==============================================================================
-    public function update(Request $request, $id) {
+    public function update(Request $request, int $id) {
         $album = Album::findOrFail($id);
 
         $album->update($request->all());
@@ -57,7 +57,7 @@ class AlbumController extends Controller
 // ==============================================================================
 // DELETE -> DELETAR UM DADO
 // ==============================================================================
-    public function destroy($id) {
+    public function destroy(int $id) {
         $albumExcluido = Album::findOrFail($id);
 
         $albumExcluido->delete();

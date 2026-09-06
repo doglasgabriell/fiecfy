@@ -18,7 +18,7 @@ return new class extends Migration
             // Adicionando chave estrangeira do artist
             $table->foreignId('artist_id')->constrained()->cascadeOnDelete();
             $table->string('title');
-            $table->integer('release_year');
+            $table->date('release_year');
             $table->string('cover_image')->nullable();
         });
     }
