@@ -68,9 +68,14 @@ class PlaylistController extends Controller
 // ATTACH
 // ==============================================================================
     // ! PRECISO ESTUDAR MAIS UM POUCO SOBRE E ENTENDER MELHOR SOBRE ATTACH
-    public function addSong(Request $request, $id) {
-        $playlist = Playlist::create($request->all());
+    public function addSong(Request $request, int $id) {
+        $playlist = Playlist::findOrFail($id);
         
         $playlist->songs()->attach($request->songs_id);
+
+        return response()->json([
+            "status" => true,
+            "dados" => $playlist
+        ]);
     }
 }
