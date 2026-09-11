@@ -1,4 +1,22 @@
+import { useState } from "react";
+import { RiDislikeLine } from "react-icons/ri";
+import { FcLike } from "react-icons/fc";
+import { FaPlay } from "react-icons/fa";
+
 function Player() {
+  const [like, setLike] = useState(false);
+  const [playing, setPlaying] = useState(false);
+
+
+  function liked() {
+    setLike(!like);
+    console.log("sim");
+  }
+
+  function play() {
+    setPlaying(!playing);
+  }
+
   return (
     // O footer por padrao tem um tamanho horizontal de 100%. Entao para os 3 blocos dividimos em w-1/3 que equivale a 33,3333% de 100% cada um.
     <footer className="h-20 bg-black border-t border-zinc-800 px-4 flex items-center justify-between">
@@ -9,16 +27,22 @@ function Player() {
           <strong>Bohemian Rhapsody</strong>
           <span>Queen</span>
         </div>
-      </div>
 
+        <button
+          className="w-10 h-10 flex items-center justify-center hover:scale-105 hover:transition-transform"
+          onClick={liked}
+        >
+          {like ? <RiDislikeLine size={25} /> : <FcLike size={25} />}
+        </button>
+      </div>
       {/* Bloco 2 Controle, cria-se a div de container ocupando um tamanho horizontal de 33,33% */}
       <div className="flex items-center justify-center w-1/3">
         <button className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center font-bold hover:scale-105 transition-transform">
-          ||
+          {playing   }
         </button>
       </div>
-
-      {/* Bloco 3 cria-se tambem uma div com um tamanho horizontal de 33.33%.*/} {/* // ! Somando as 3 div container de 33,33%, da 100% da width do footer */}
+      {/* Bloco 3 cria-se tambem uma div com um tamanho horizontal de 33.33%.*/}{" "}
+      {/* // ! Somando as 3 div container de 33,33%, da 100% da width do footer */}
       <div className="flex items-center justify-end w-1/3">
         <div className="w-24 h-1 bg-zinc-600 rounded-full">
           {/* Pega o tamanho horizontal da metade da div que ele é pai*/}
