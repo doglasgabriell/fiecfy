@@ -2,15 +2,14 @@ import { useState } from "react";
 import { RiDislikeLine } from "react-icons/ri";
 import { FcLike } from "react-icons/fc";
 import { FaPlay } from "react-icons/fa";
+import { IoIosPause } from "react-icons/io";
 
 function Player() {
   const [like, setLike] = useState(false);
   const [playing, setPlaying] = useState(false);
 
-
   function liked() {
     setLike(!like);
-    console.log("sim");
   }
 
   function play() {
@@ -32,13 +31,16 @@ function Player() {
           className="w-10 h-10 flex items-center justify-center hover:scale-105 hover:transition-transform"
           onClick={liked}
         >
-          {like ? <RiDislikeLine size={25} /> : <FcLike size={25} />}
+          {like ? <FcLike size={25} /> : <RiDislikeLine size={25} />}
         </button>
       </div>
       {/* Bloco 2 Controle, cria-se a div de container ocupando um tamanho horizontal de 33,33% */}
       <div className="flex items-center justify-center w-1/3">
-        <button className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center font-bold hover:scale-105 transition-transform">
-          {playing   }
+        <button
+          onClick={play}
+          className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center font-bold hover:scale-105 transition-transform"
+        >
+          {playing ? <IoIosPause size={20} /> : <FaPlay size={15} />}
         </button>
       </div>
       {/* Bloco 3 cria-se tambem uma div com um tamanho horizontal de 33.33%.*/}{" "}
