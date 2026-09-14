@@ -23,7 +23,7 @@ function App() {
               >
                 Show all
               </a>
-              <div className="w-full overflow-x-auto">
+              <div className="w-full overflow-hidden">
                 <div className="flex w-full gap-5">
                   {generoData.map((genero) => (
                     <Genero

@@ -1,6 +1,6 @@
 const PlaylistAside = ({imagem, titulo, descricao, genero}) => {
   return (
-    <div className="flex flex-col  bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800 transition-colors cursor-pointer group w-full shrink-0">
+    <div className="bg-zinc-900 p-4 rounded-lg hover:bg-zinc-800 transition-colors cursor-pointer group w-48 shrink-0">
         <div className="relative mb-4">
             {/* IMAGEM*/}
             <img src={imagem} 
