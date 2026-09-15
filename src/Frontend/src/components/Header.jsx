@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { IoIosNotifications } from "react-icons/io";
+import { IoIosSearch } from "react-icons/io";
 
-const Header = () => {
+const Header = ({search, clear, setSearch}) => {
   const [notification, setNotification] = useState(3);
   const [aberto, setAberto] = useState(false);
 
@@ -23,6 +24,26 @@ const Header = () => {
         </button>
         <button className="w-8 rounded-full bg-black/70 flex items-center justify-center text-zinc-400 cursor-not-allowed">
           {">"}
+        </button>
+      </div>
+
+      {/* BARRA DE BUSCAR */}
+      <div className="relative flex flex-col items-center justify-center ">
+        <input
+          type="text"
+          className="bg-zinc-800 text-white rounded-full px-4 py-2"
+          placeholder="Pesquisa"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <IoIosSearch className="absolute left-58 opacity-50" />
+        <p className="absolute top-12">{`Buscando por: ${search}`}</p>
+
+        <button
+          onClick={clear}
+          className="absolute top-20 bg-zinc-500 px-3 rounded-2xl font-bold shadow-2xl cursor-pointer hover:bg-zinc-700 transition-colors"
+        >
+          Limpar
         </button>
       </div>
 

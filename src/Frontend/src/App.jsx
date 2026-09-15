@@ -6,7 +6,15 @@ import playlistData from "./data/playlistAPI";
 import generoData from "./data/generoAPI";
 import Genero from "./components/Genero";
 
+import { useState } from "react";
+
 function App() {
+  const [search, setSearch] = useState("");
+
+  function clear() {
+    setSearch("");
+  }
+
   return (
     <>
       {/* Div responsavel pelo preenchimento todo da tela usando o h-screen*/}
@@ -14,7 +22,7 @@ function App() {
         <div className="flex flex-1 overflow-hidden">
           <Sidebar />
           <main className="flex-1 bg-zinc-900 rounded-lg m-2 p-6 overflow-y-auto">
-            <Header />
+            <Header search={search} setSearch={setSearch} clear={clear} />
             <h2 className="text-2xl font-bold mb-6">Olá, Dôglas!</h2>
             <div className="flex flex-col">
               <a
@@ -23,9 +31,9 @@ function App() {
               >
                 Show all
               </a>
-              <div className="w-full overflow-hidden">
+              <div className="w-full overflow-x-auto">
                 <div className="flex w-full gap-5">
-                  {generoData.map((genero) => (
+                  {generoData.filter((genero) => genero.genero.toLowerCase().includes(search.toLowerCase())).map((genero) => (
                     <Genero
                       key={genero.id}
                       genero={genero.genero}
